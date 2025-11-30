@@ -5,26 +5,30 @@ Course Code: DLGenAI — IIT Madras BSc Degree in Data Science and Applications
 
 ---
 
-## 📌 Project Title  
+## 📌 Project Title
+
 **Multi-Label Emotion Classification using Scratch Neural Networks and Transformer Models**
 
 This project implements a complete, modular deep learning pipeline for detecting five emotions in text:
-- anger
-- fear
-- joy
-- sadness
-- surprise
+
+- anger  
+- fear  
+- joy  
+- sadness  
+- surprise  
 
 The system includes:
+
 - A scratch-built BiLSTM model  
 - Transformer-based models (BERT and RoBERTa)  
 - Unified training and inference scripts  
 - Model uploading and reporting utilities  
-- Kaggle-ready and GitHub-ready structure  
+- Kaggle-ready and GitHub-ready structure (compatible with the standard Kaggle Python image)[attached_file:1]  
 
 ---
 
-## 👤 Author  
+## 👤 Author
+
 **Gaurav Tomar**  
 *Student ID:* 23f1000805  
 *Program:* BSc Degree in Data Science and Applications — IIT Madras  
@@ -53,76 +57,79 @@ emotion-classification-project/
 │ ├── transformer_train.py # BERT & RoBERTa training using HF Trainer
 │ ├── inference_utils.py # Shared inference helpers
 │ ├── uploader.py # Upload models to KaggleHub (optional)
-│ └── reporting.py # Summaries, plots, and evaluation reports
-│ └── train.py # Main script: trains scratch + transformer models
+│ ├── reporting.py # Summaries, plots, and evaluation reports
+│ ├── train.py # Main script: trains scratch + transformer models
 │ └── inference.py # Main inference script
 │
-├── scripts/
-│ ├── dl-23f1000805-notebook-t32025 (1).ipynb # model preprocessing and training notebook
-│ └── dl-23f1000805-notebook-t32025 (2).ipynb # model inference notebook
-└── README.md
+├── notebooks/
+│ ├── dl-23f1000805-notebook-t32025-train.ipynb # preprocessing + training
+│ └── dl-23f1000805-notebook-t32025-infer.ipynb # inference + submission
+│
+└── project_outputs/ # Created at runtime (models, logs, submissions)
 
-markdown
-Copy code
+text
 
 ---
 
 ## 🚀 Features
 
-### **1. Scratch BiLSTM Model**
+### 1. Scratch BiLSTM Model
+
 - Custom vocabulary builder  
-- Embedding + BiLSTM + Linear head  
-- Trains fully from scratch  
+- Embedding + BiLSTM + linear classification head  
+- Trains fully from scratch on tokenized text  
 - Helps understand NLP pipelines without pretrained models  
 
-### **2. Transformer-Based Models**
-- BERT-base (bert-base-uncased)  
-- RoBERTa-base (roberta-base)  
-- Uses HuggingFace Trainer  
-- Multi-label classification via sigmoid activation  
+### 2. Transformer-Based Models
 
-### **3. Unified Training**
-- `train.py` runs:
-  - scratch model training  
+- BERT-base (`bert-base-uncased`)  
+- RoBERTa-base (`roberta-base`)  
+- Uses Hugging Face `Trainer` API  
+- Multi-label classification with sigmoid activation and BCE-with-logits loss  
+
+### 3. Unified Training
+
+- `train.py` runs:  
+  - scratch BiLSTM training  
   - BERT fine-tuning  
   - RoBERTa fine-tuning  
-- Saves outputs to `project_outputs/`
+- Saves checkpoints and submissions to `project_outputs/`  
 
-### **4. Unified Inference**
-- `inference.py` loads:
+### 4. Unified Inference
+
+- `inference.py` loads:  
   - scratch model state  
   - fine-tuned BERT model  
   - fine-tuned RoBERTa model  
-- Generates:
-  - submission_scratch.csv  
-  - submission_bert.csv  
-  - submission_roberta.csv  
+- Generates Kaggle-ready CSVs:  
+  - `submission_scratch.csv`  
+  - `submission_bert.csv`  
+  - `submission_roberta.csv`  
 
-### **5. Reporting Tools**
-- Summary table  
-- Bar chart  
-- Line plot  
-- Simple text-based observations  
+### 5. Reporting Tools
 
-### **6. KaggleHub Upload Support**
-- Upload complete HuggingFace model folders  
-- Upload individual `.pt` files  
-- Automatically versions models  
+- CSV summary of model scores  
+- Bar chart and line plot of F1 scores  
+- Simple text-based observations via `reporting.py`  
+
+### 6. KaggleHub Upload Support (Optional)
+
+- Upload complete Hugging Face model folders  
+- Upload individual `.pt` files (state dicts)  
+- Automatic versioning via KaggleHub  
 
 ---
 
 ## 🛠 Setup Instructions
 
-### **1. Install Dependencies**
-
-Use:
+### 1. Install Dependencies
 
 pip install -r requirements.txt
 
-yaml
-Copy code
+text
 
 Required libraries include:
+
 - torch  
 - transformers  
 - scikit-learn  
@@ -134,7 +141,7 @@ Required libraries include:
 
 ## 📌 How to Run (Local or Kaggle)
 
-### **Step 1 — Place Dataset**
+### Step 1 — Place Dataset
 
 Place the dataset in:
 
@@ -143,15 +150,13 @@ train.csv
 test.csv
 sample_submission.csv
 
-markdown
-Copy code
+text
 
-### **Step 2 — Run Training**
+### Step 2 — Run Training
 
-python train.py
+python scripts/train.py
 
-markdown
-Copy code
+text
 
 This will:
 
@@ -159,144 +164,145 @@ This will:
 - Train scratch BiLSTM  
 - Train BERT  
 - Train RoBERTa  
-- Save models + submissions in:  
-  `project_outputs/`
+- Save models and submissions in `project_outputs/`  
 
-### **Step 3 — Run Inference**
+### Step 3 — Run Inference
 
-python inference.py
+python scripts/inference.py
 
-yaml
-Copy code
+text
 
 This creates:
 
-- submission_scratch.csv  
-- submission_bert.csv  
-- submission_roberta.csv  
+- `submission_scratch.csv`  
+- `submission_bert.csv`  
+- `submission_roberta.csv`  
 
 ---
 
 ## 📌 How to Use on Kaggle
 
-### **Step 1 — Upload the project (ZIP or via scripts)**  
-### **Step 2 — Extract into a folder:**
+### Step 1 — Upload the project (ZIP or via Git)
+
+Upload a ZIP of the repo or connect the GitHub repo as a Kaggle Dataset.  
+
+### Step 2 — Extract into a folder
 
 !unzip project.zip -d project
 
-markdown
-Copy code
+text
 
-### **Step 3 — Copy Kaggle dataset:**
+### Step 3 — Copy Kaggle dataset
 
 !cp /kaggle/input/2025-sep-dl-gen-ai-project/* project/data/
 
-markdown
-Copy code
+text
 
-### **Step 4 — Run training:**
+### Step 4 — Run training
 
-!python project/train.py
+!python project/scripts/train.py
 
-markdown
-Copy code
+text
 
-### **Step 5 — Run inference:**
+### Step 5 — Run inference
 
-!python project/inference.py
+!python project/scripts/inference.py
 
-yaml
-Copy code
+text
 
 ---
 
 ## 📊 Model Output Summary (Expected)
 
-| Model | Type | Expected F1-Micro |
-|-------|-------|-------------------|
-| Scratch BiLSTM | From-scratch model | ~0.30–0.60 |
-| BERT-base | Transformer | ~0.84–0.86 |
-| RoBERTa-base | Transformer | ~0.85–0.87 |
+| Model           | Type                | Expected F1-Micro |
+|----------------|---------------------|-------------------|
+| Scratch BiLSTM | From-scratch model  | ~0.30–0.60        |
+| BERT-base      | Transformer         | ~0.84–0.86        |
+| RoBERTa-base   | Transformer         | ~0.85–0.87        |
 
-Actual scores depend on hyperparameters and random seed.
+Actual scores depend on hyperparameters, random seed, and validation split.
 
 ---
 
 ## 📤 Uploading Models via KaggleHub (Optional)
 
-Use `src/uploader.py` to upload:
+Use `scripts/uploader.py` to upload:
 
-- HuggingFace model folders  
+- Hugging Face model folders  
 - `.pt` files  
-- scratch model weights  
+- Scratch model weights  
 
 Example:
 
-```python
-from src.uploader import upload_folder_kagglehub
-upload_folder_kagglehub("project_outputs/bert_base_hf", "username/emotion-models")
-📈 Reporting
-The script src/reporting.py provides:
+from scripts.uploader import upload_folder_to_kagglehub
 
-CSV summary of model scores
+upload_folder_to_kagglehub(
+local_dir="project_outputs/bert_base_hf",
+model_slug="username/emotion-models",
+framework="pytorch",
+notes="BERT-base fine-tuned on DLGenAI emotion dataset",
+)
 
-Bar plot of F1 scores
+text
 
-Line plot comparison
+---
 
-Text summary of observations
+## 📈 Reporting
+
+The script `scripts/reporting.py` provides:
+
+- CSV summary of model scores  
+- Bar plot of F1 scores  
+- Line plot comparison across models  
+- Text summary of observations  
 
 Example:
 
-python
-Copy code
-from src.reporting import *
-df, _ = save_summary(results, "project_outputs")
+from scripts.reporting import save_summary, plot_bar, plot_line, print_observations
+
+df, summary_path = save_summary(results, "project_outputs")
 plot_bar(df)
 plot_line(df)
 print_observations(df)
-🔧 Technologies Used
-Python
 
-PyTorch
+text
 
-HuggingFace Transformers
+---
 
-scikit-learn
+## 🔧 Technologies Used
 
-pandas / numpy
+- Python  
+- PyTorch  
+- Hugging Face Transformers  
+- scikit-learn  
+- pandas / numpy  
+- matplotlib  
+- KaggleHub (optional)  
+- Weights & Biases (optional)  
 
-matplotlib
+---
 
-KaggleHub (optional)
+## 📚 Learning Outcomes
 
-Weights & Biases (optional)
+- Built a complete NLP pipeline from scratch  
+- Understood multi-label text classification  
+- Compared scratch models vs. transformer-based models  
+- Learned Hugging Face `Trainer` workflow  
+- Managed a modular ML project (training, inference, reporting, upload)  
+- Created Kaggle-ready and GitHub-ready ML scripts  
+- Implemented unified inference for deployment-style use  
 
-📚 Learning Outcomes
-Built a complete NLP pipeline from scratch
+---
 
-Understood multi-label classification
+## 📄 License
 
-Compared scratch models vs transformers
+This project is for educational and academic purposes under the DLGenAI course (September 2025 term).
 
-Learned HuggingFace Trainer workflow
+---
 
-Managed a real project with modular code
+## 📝 Acknowledgements
 
-Created Kaggle-ready & GitHub-ready ML scripts
-
-Implemented unified inference for deployment
-
-📄 License
-This project is for educational and academic purposes under the DLGenAI course (September 2025).
-
-📝 Acknowledgements
-IIT Madras BSc Program
-
-Kaggle datasets and runtime environment
-
-HuggingFace Transformers library
-
-PyTorch team
-
-End of README
+- IIT Madras BSc Program  
+- Kaggle datasets and runtime environment[attached_file:1]  
+- Hugging Face Transformers library  
+- PyTorch team 
