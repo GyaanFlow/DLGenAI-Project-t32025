@@ -1,7 +1,7 @@
 # DLGenAI-Project-t32025
 
 Deep Learning and GenAI Project for the September 2025 term  
-Course Code: MAD2 — IIT Madras BSc Degree in Data Science and Applications
+Course Code: DLGenAI — IIT Madras BSc Degree in Data Science and Applications
 
 ---
 
