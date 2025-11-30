@@ -67,7 +67,6 @@ emotion-classification-project/
 │
 └── project_outputs/ # Created at runtime (models, logs, submissions)
 
-text
 
 ---
 
